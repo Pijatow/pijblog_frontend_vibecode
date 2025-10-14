@@ -1,0 +1,606 @@
+@import "tailwindcss";
+
+/**
+ * Tailwind v4 Configuration
+ * Configure dark mode to use class strategy instead of media query
+ */
+@theme {
+  --color-scheme: light dark;
+}
+
+@variant dark (&:where(.dark, .dark *));
+
+/**
+ * Global Styles for PijBlog
+ *
+ * Structure:
+ * 1. @layer base - CSS variables, body styles, and resets
+ * 2. @layer components - Markdown content styling
+ * 3. @layer utilities - Custom utility classes for colors, gradients, etc.
+ *
+ * Note: Component-specific styles should use Tailwind classes or the
+ * design tokens from src/styles/designTokens.ts
+ */
+
+@layer base {
+  /* CSS Custom Properties (Design Tokens) */
+  :root {
+    --color-primary: #223843;
+    --color-primary-dark: #1a2d35;
+    --color-primary-light: #2d4754;
+
+    --color-accent: #d77a61;
+    --color-accent-dark: #c5644d;
+    --color-accent-light: #e39b86;
+
+    --color-secondary: #8797b2;
+    --color-secondary-dark: #6d7f9a;
+    --color-secondary-light: #a3b0c5;
+
+    --color-background: #FFF8EF;
+    --color-background-dark: #f5e5cf;
+    --color-background-light: #fff8ed;
+
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+    color-scheme: light;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark {
+    --color-primary: #FFF8EF;
+    --color-primary-dark: #fff8ed;
+    --color-primary-light: #f5e5cf;
+
+    --color-accent: #d77a61;
+    --color-accent-dark: #c5644d;
+    --color-accent-light: #e39b86;
+
+    --color-secondary: #8797b2;
+    --color-secondary-dark: #6d7f9a;
+    --color-secondary-light: #a3b0c5;
+
+    --color-background: #223843;
+    --color-background-dark: #1a2d35;
+    --color-background-light: #2d4754;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff8ed 0%, #FFF8EF 50%, #f5e5cf 100%);
+    background-attachment: fixed;
+    color: var(--color-primary);
+    padding-top: 1rem;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body {
+    background: linear-gradient(135deg, #1a2d35 0%, #223843 50%, #2d4754 100%);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  /* Markdown Content Styling - Keep these as they're clean and necessary */
+
+  /* Markdown Content Styling */
+  .markdown-content {
+    color: #374151;
+    line-height: 1.75;
+  }
+
+  .dark .markdown-content {
+    color: #e5e7eb;
+  }
+
+  .markdown-content h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-secondary);
+  }
+
+  .dark .markdown-content h1 {
+    color: #f3f4f6;
+  }
+
+  .markdown-content h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-secondary);
+  }
+
+  .dark .markdown-content h2 {
+    color: #f3f4f6;
+  }
+
+  .markdown-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .dark .markdown-content h3 {
+    color: #f3f4f6;
+  }
+
+  .markdown-content p {
+    margin-bottom: 1rem;
+    color: #374151;
+  }
+
+  .dark .markdown-content p {
+    color: #e5e7eb;
+  }
+
+  .markdown-content a {
+    color: #d77a61;
+    text-decoration: underline;
+    transition: color 0.2s;
+  }
+
+  .markdown-content a:hover {
+    color: #c5644d;
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+    list-style-position: inside;
+  }
+
+  .markdown-content ul {
+    list-style-type: disc;
+  }
+
+  .markdown-content ol {
+    list-style-type: decimal;
+  }
+
+  .markdown-content li {
+    color: #374151;
+    margin-bottom: 0.5rem;
+  }
+
+  .dark .markdown-content li {
+    color: #e5e7eb;
+  }
+
+  .markdown-content blockquote {
+    border-left: 4px solid var(--color-accent);
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+    background-color: #f3f4f6;
+    color: #374151;
+  }
+
+  .dark .markdown-content blockquote {
+    background-color: rgba(55, 65, 81, 0.5);
+    color: #e5e7eb;
+  }
+
+  .markdown-content code {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-family: monospace;
+  }
+
+  .dark .markdown-content code {
+    background-color: var(--color-primary-dark);
+    color: var(--color-background);
+  }
+
+  .markdown-content pre {
+    background-color: #f3f4f6;
+    color: #1f2937;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .dark .markdown-content pre {
+    background-color: var(--color-primary-dark);
+    color: var(--color-background);
+  }
+
+  .markdown-content pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .dark .markdown-content pre code {
+    color: var(--color-background);
+  }
+
+  .markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
+
+  .markdown-content thead {
+    background-color: #223843;
+    color: #FFF8EF;
+  }
+
+  .markdown-content th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid #8797b2;
+  }
+
+  .markdown-content td {
+    padding: 0.75rem 1rem;
+    border: 1px solid #8797b2;
+  }
+
+  .markdown-content tbody tr:nth-child(even) {
+    background-color: #f5e5cf;
+  }
+
+  .markdown-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .markdown-content hr {
+    border-color: #8797b2;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .markdown-content strong {
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .markdown-content em {
+    font-style: italic;
+  }
+}
+
+@layer utilities {
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-primary-dark {
+    color: var(--color-primary-dark);
+  }
+  .text-primary-light {
+    color: var(--color-primary-light);
+  }
+  .text-accent {
+    color: var(--color-accent);
+  }
+  .text-accent-dark {
+    color: var(--color-accent-dark);
+  }
+  .text-accent-light {
+    color: var(--color-accent-light);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+  .text-secondary-dark {
+    color: var(--color-secondary-dark);
+  }
+  .text-secondary-light {
+    color: var(--color-secondary-light);
+  }
+  .text-background {
+    color: var(--color-background);
+  }
+
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-primary-dark {
+    background-color: var(--color-primary-dark);
+  }
+  .bg-primary-light {
+    background-color: var(--color-primary-light);
+  }
+  .bg-accent {
+    background-color: var(--color-accent);
+  }
+  .bg-accent-dark {
+    background-color: var(--color-accent-dark);
+  }
+  .bg-accent-light {
+    background-color: var(--color-accent-light);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+  .bg-secondary-dark {
+    background-color: var(--color-secondary-dark);
+  }
+  .bg-secondary-light {
+    background-color: var(--color-secondary-light);
+  }
+  .bg-background {
+    background-color: var(--color-background);
+  }
+  .bg-background-dark {
+    background-color: var(--color-background-dark);
+  }
+  .bg-background-light {
+    background-color: var(--color-background-light);
+  }
+
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+  .border-accent {
+    border-color: var(--color-accent);
+  }
+  .border-secondary {
+    border-color: var(--color-secondary);
+  }
+  .border-background {
+    border-color: var(--color-background);
+  }
+
+  .from-primary {
+    --tw-gradient-from: var(--color-primary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
+  }
+  .from-primary-dark {
+    --tw-gradient-from: var(--color-primary-dark);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
+  }
+  .from-accent {
+    --tw-gradient-from: var(--color-accent);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
+  }
+  .from-accent-dark {
+    --tw-gradient-from: var(--color-accent-dark);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
+  }
+  .from-accent-light {
+    --tw-gradient-from: var(--color-accent-light);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
+  }
+  .from-secondary {
+    --tw-gradient-from: var(--color-secondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
+  }
+
+  .to-primary {
+    --tw-gradient-to: var(--color-primary);
+  }
+  .to-primary-dark {
+    --tw-gradient-to: var(--color-primary-dark);
+  }
+  .to-accent {
+    --tw-gradient-to: var(--color-accent);
+  }
+  .to-accent-dark {
+    --tw-gradient-to: var(--color-accent-dark);
+  }
+  .to-accent-light {
+    --tw-gradient-to: var(--color-accent-light);
+  }
+  .to-secondary {
+    --tw-gradient-to: var(--color-secondary);
+  }
+  .to-secondary-dark {
+    --tw-gradient-to: var(--color-secondary-dark);
+  }
+  .to-secondary-light {
+    --tw-gradient-to: var(--color-secondary-light);
+  }
+
+  .via-primary {
+    --tw-gradient-via: var(--color-primary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent);
+  }
+  .via-primary-dark {
+    --tw-gradient-via: var(--color-primary-dark);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent);
+  }
+  .via-accent {
+    --tw-gradient-via: var(--color-accent);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent);
+  }
+  .via-secondary {
+    --tw-gradient-via: var(--color-secondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent);
+  }
+
+  .hover\:bg-primary-light:hover {
+    background-color: var(--color-primary-light);
+  }
+  .hover\:bg-accent:hover {
+    background-color: var(--color-accent);
+  }
+  .hover\:bg-accent-dark:hover {
+    background-color: var(--color-accent-dark);
+  }
+  .hover\:bg-background:hover {
+    background-color: var(--color-background);
+  }
+  .hover\:bg-secondary-light:hover {
+    background-color: var(--color-secondary-light);
+  }
+
+  .hover\:text-accent:hover {
+    color: var(--color-accent);
+  }
+  .hover\:text-primary:hover {
+    color: var(--color-primary);
+  }
+  .hover\:text-background:hover {
+    color: var(--color-background);
+  }
+
+  .hover\:border-accent:hover {
+    border-color: var(--color-accent);
+  }
+
+  .hover\:from-primary-dark:hover {
+    --tw-gradient-from: var(--color-primary-dark);
+  }
+  .hover\:from-accent-dark:hover {
+    --tw-gradient-from: var(--color-accent-dark);
+  }
+  .hover\:from-secondary-dark:hover {
+    --tw-gradient-from: var(--color-secondary-dark);
+  }
+  .hover\:from-accent\/20:hover {
+    --tw-gradient-from: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+  .hover\:from-secondary\/20:hover {
+    --tw-gradient-from: color-mix(in srgb, var(--color-secondary) 20%, transparent);
+  }
+
+  .hover\:to-primary:hover {
+    --tw-gradient-to: var(--color-primary);
+  }
+  .hover\:to-accent:hover {
+    --tw-gradient-to: var(--color-accent);
+  }
+  .hover\:to-accent-dark:hover {
+    --tw-gradient-to: var(--color-accent-dark);
+  }
+  .hover\:to-secondary:hover {
+    --tw-gradient-to: var(--color-secondary);
+  }
+  .hover\:to-accent\/20:hover {
+    --tw-gradient-to: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+
+  .bg-white\/60 {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .bg-white\/70 {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .border-white\/30 {
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .border-white\/40 {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .border-white\/10 {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .bg-accent\/10 {
+    background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  }
+
+  .bg-secondary\/10 {
+    background-color: color-mix(in srgb, var(--color-secondary) 10%, transparent);
+  }
+
+  .border-secondary\/30 {
+    border-color: color-mix(in srgb, var(--color-secondary) 30%, transparent);
+  }
+
+  .hover\:bg-accent\/10:hover {
+    background-color: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  }
+
+  .hover\:bg-secondary\/10:hover {
+    background-color: color-mix(in srgb, var(--color-secondary) 10%, transparent);
+  }
+
+  .hover\:bg-secondary:hover {
+    background-color: var(--color-secondary);
+  }
+
+  .hover\:text-secondary:hover {
+    color: var(--color-secondary);
+  }
+
+  .from-accent-light {
+    --tw-gradient-from: var(--color-accent-light);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
+  }
+
+  .from-secondary-light {
+    --tw-gradient-from: var(--color-secondary-light);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, transparent);
+  }
+
+  .to-accent-light {
+    --tw-gradient-to: var(--color-accent-light);
+  }
+
+  .to-secondary-light {
+    --tw-gradient-to: var(--color-secondary-light);
+  }
+
+  .via-secondary {
+    --tw-gradient-via: var(--color-secondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-via), var(--tw-gradient-to, transparent);
+  }
+
+  .border-secondary {
+    border-color: var(--color-secondary);
+  }
+
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .focus\:ring-accent:focus {
+    --tw-ring-color: var(--color-accent);
+  }
+  .focus\:ring-accent\/20:focus {
+    --tw-ring-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+  .focus\:ring-primary\/50:focus {
+    --tw-ring-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
+  .focus\:ring-secondary\/50:focus {
+    --tw-ring-color: color-mix(in srgb, var(--color-secondary) 50%, transparent);
+  }
+  .focus\:ring-accent\/50:focus {
+    --tw-ring-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+  }
+  .focus\:border-accent:focus {
+    border-color: var(--color-accent);
+  }
+}
