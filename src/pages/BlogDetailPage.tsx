@@ -168,10 +168,24 @@ export function BlogDetailPage() {
               <CommentForm onSubmit={handleAddComment} />
             </div>
           ) : (
-            <div className="mb-8 p-4 bg-secondary-light bg-opacity-20 rounded-lg text-center">
-              <p className="text-secondary">
+            <div className="mb-8 p-6 bg-gray-100 dark:bg-gray-700 rounded-lg text-center border-2 border-gray-300 dark:border-gray-600">
+              <p className="text-gray-700 dark:text-gray-200 mb-4 text-lg">
                 Please log in to leave a comment
               </p>
+              <div className="flex gap-3 justify-center">
+                <a
+                  href="/login"
+                  className="px-6 py-2.5 bg-gray-800 hover:bg-gray-900 dark:bg-gray-200 dark:hover:bg-gray-100 text-white dark:text-gray-900 rounded-lg transition-all duration-300 font-medium shadow-md hover:shadow-lg"
+                >
+                  Login
+                </a>
+                <a
+                  href="/register"
+                  className="px-6 py-2.5 bg-accent hover:bg-accent-dark text-white rounded-lg transition-all duration-300 font-medium shadow-md hover:shadow-lg"
+                >
+                  Sign Up
+                </a>
+              </div>
             </div>
           )}
 

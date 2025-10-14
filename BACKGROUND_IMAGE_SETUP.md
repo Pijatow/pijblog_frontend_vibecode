@@ -1,6 +1,6 @@
 # Background Image Implementation
 
-**Date**: October 14, 2025  
+**Date**: October 14, 2025
 **Status**: ✅ **IMPLEMENTED**
 
 ## Background Image Setup
@@ -15,7 +15,7 @@ Updated `src/index.css` to use the background image with overlay gradients for b
 
 #### Light Mode
 ```css
-background: 
+background:
   linear-gradient(135deg, rgba(255, 248, 237, 0.85) 0%, rgba(255, 248, 239, 0.85) 50%, rgba(245, 229, 207, 0.85) 100%),
   url('/background.jpg');
 ```
@@ -28,7 +28,7 @@ background:
 
 #### Dark Mode
 ```css
-background: 
+background:
   linear-gradient(135deg, rgba(26, 45, 53, 0.85) 0%, rgba(34, 56, 67, 0.85) 50%, rgba(45, 71, 84, 0.85) 100%),
   url('/background.jpg');
 ```
@@ -93,7 +93,7 @@ rgba(255, 248, 239, 0.85)
 ### Different Image for Dark Mode
 ```css
 .dark body {
-  background: 
+  background:
     linear-gradient(...),
     url('/background-dark.jpg'); /* Different image */
 }
