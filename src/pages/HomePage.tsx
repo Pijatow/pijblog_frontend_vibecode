@@ -72,7 +72,7 @@ export function HomePage() {
   }
 
   return (
-    <div>
+    <div className="">
       {/* Hero Section */}
       <div className="mb-12 text-center">
         <div className="inline-block mb-4">

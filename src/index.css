@@ -74,15 +74,28 @@
     margin: 0;
     min-width: 320px;
     min-height: 100vh;
-    background: linear-gradient(135deg, #fff8ed 0%, #FFF8EF 50%, #f5e5cf 100%);
+    /* Background image with cream overlay for light mode */
+    background: 
+      linear-gradient(135deg, rgba(255, 248, 237, 0.85) 0%, rgba(255, 248, 239, 0.85) 50%, rgba(245, 229, 207, 0.85) 100%),
+      url('/background.jpg');
+    background-size: cover;
+    background-position: center;
     background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--color-primary);
     padding-top: 1rem;
     transition: background 0.3s ease, color 0.3s ease;
   }
 
   .dark body {
-    background: linear-gradient(135deg, #1a2d35 0%, #223843 50%, #2d4754 100%);
+    /* Background image with dark blue overlay for dark mode */
+    background: 
+      linear-gradient(135deg, rgba(26, 45, 53, 0.85) 0%, rgba(34, 56, 67, 0.85) 50%, rgba(45, 71, 84, 0.85) 100%),
+      url('/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
   }
 
   * {
